@@ -15,9 +15,11 @@ import { hashString, seededRandom } from '../domain/seededRandom'
 import type { Tile } from './slots'
 import type { RanchMap } from './ranchMap'
 
+// BASE_URL keeps the sheets findable when the ranch is served from a
+// subfolder, as it is on GitHub Pages.
 export const CARETAKER_SHEETS = {
-  guti: '/assets/trainers/protahombre.png',
-  sky: '/assets/trainers/dawnrosa.png',
+  guti: `${import.meta.env.BASE_URL}assets/trainers/protahombre.png`,
+  sky: `${import.meta.env.BASE_URL}assets/trainers/dawnrosa.png`,
 } as const
 
 export type CaretakerId = keyof typeof CARETAKER_SHEETS

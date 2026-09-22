@@ -277,7 +277,7 @@ function crop(img: CanvasImageSource, sx: number, sy: number, sw: number, sh: nu
 }
 
 export function overworldSheetUrl(id: number, shiny: boolean): string {
-  return `/assets/overworld/${shiny ? 'shiny/' : ''}${String(id).padStart(4, '0')}.png`
+  return `${import.meta.env.BASE_URL}assets/overworld/${shiny ? 'shiny/' : ''}${String(id).padStart(4, '0')}.png`
 }
 
 /**
