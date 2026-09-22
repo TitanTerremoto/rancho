@@ -133,7 +133,7 @@ export function fromYouTube(rows: Record<string, string>[]): NormalizedMembershi
   return out
 }
 
-const TWITCH_COLUMNS = ['Username', 'Subscribe Date', 'Current Tier', 'Tenure', 'Streak']
+const TWITCH_COLUMNS = ['Username', 'Current Tier', 'Tenure']
 
 const TWITCH_TIERS: Record<string, string> = { 'tier 1': '1000', 'tier 2': '2000', 'tier 3': '3000' }
 
@@ -144,18 +144,16 @@ export function fromTwitch(rows: Record<string, string>[]): NormalizedMembership
     const login = row['Username'].trim()
     const displayName = cleanDisplayName(login)
     if (!login || !displayName) continue
-    const tenure = months(row['Tenure'])
-    const streak = months(row['Streak'])
-    // The export dates the current run, not the first one: only an unbroken
-    // streak lets that date stand for "member since".
-    const unbroken = tenure !== null && streak !== null && tenure === streak
     out.push({
       platform: 'twitch',
       // The export has no numeric user id, so the login is the identity.
       platformUserId: login.toLowerCase(),
       displayName,
-      memberSince: unbroken ? isoOrNull(row['Subscribe Date']) : null,
-      tenureMonths: tenure,
+      // "Subscribe Date" dates the current billing run, not the first one: in
+      // this channel's own export it disagrees with Tenure for subscribers of
+      // six years, so it is never reported as a join date. Tenure stands alone.
+      memberSince: null,
+      tenureMonths: months(row['Tenure']),
       tier: TWITCH_TIERS[row['Current Tier'].trim().toLowerCase()] ?? null,
     })
   }

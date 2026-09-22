@@ -74,9 +74,14 @@ describe('fromTwitch', () => {
     expect(subs[0].platformUserId).toBe('axta96')
   })
 
-  it('dates the membership only when the streak is unbroken', () => {
-    expect(subs[0].memberSince).toBeNull()
-    expect(subs[1].memberSince).toBe('2026-09-19T05:57:09.000Z')
+  it('never reports a join date, because the export cannot back one', () => {
+    // checo512 subscribed on 2026-09-19 with 79 months of tenure: the date is
+    // the current billing run, so publishing it as "member since" would lie.
+    expect(subs.map(s => s.memberSince)).toEqual([null, null, null])
+  })
+
+  it('keeps the tenure, which the export does back', () => {
+    expect(subs.map(s => s.tenureMonths)).toEqual([40, 79, 26])
   })
 })
 

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-22T14:48:28.001Z",
+  "generatedAt": "2026-09-22T14:58:44.366Z",
   "residents": [
     {
       "id": "r0",
@@ -297,7 +297,7 @@
       "zone": "casa",
       "slot": 0,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-01-24T01:54:32.000Z",
+      "memberSince": null,
       "tenureMonths": 25,
       "tier": "1000"
     },
@@ -323,7 +323,7 @@
       "zone": "flores",
       "slot": 3,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2025-05-12T00:14:51.000Z",
+      "memberSince": null,
       "tenureMonths": 17,
       "tier": "1000"
     },
@@ -336,7 +336,7 @@
       "zone": "rocas",
       "slot": 3,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-03T23:36:42.000Z",
+      "memberSince": null,
       "tenureMonths": 2,
       "tier": "1000"
     },
@@ -375,7 +375,7 @@
       "zone": "descanso",
       "slot": 2,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2025-02-23T22:07:51.000Z",
+      "memberSince": null,
       "tenureMonths": 73,
       "tier": "1000"
     },
@@ -414,7 +414,7 @@
       "zone": "casa",
       "slot": 1,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-04-10T00:11:35.000Z",
+      "memberSince": null,
       "tenureMonths": 6,
       "tier": "1000"
     },
@@ -427,7 +427,7 @@
       "zone": "lago",
       "slot": 4,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-19T04:37:25.000Z",
+      "memberSince": null,
       "tenureMonths": 2,
       "tier": "1000"
     },
@@ -492,7 +492,7 @@
       "zone": "prado",
       "slot": 10,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-09-05T02:07:01.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -505,7 +505,7 @@
       "zone": "prado",
       "slot": 11,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-28T00:04:18.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -570,7 +570,7 @@
       "zone": "rocas",
       "slot": 4,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-26T17:20:12.000Z",
+      "memberSince": null,
       "tenureMonths": 22,
       "tier": "1000"
     },
@@ -583,7 +583,7 @@
       "zone": "prado",
       "slot": 12,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-28T01:17:55.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -648,7 +648,7 @@
       "zone": "flores",
       "slot": 8,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-07-05T08:02:34.000Z",
+      "memberSince": null,
       "tenureMonths": 3,
       "tier": "1000"
     },
@@ -687,7 +687,7 @@
       "zone": "rocas",
       "slot": 7,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-28T16:35:45.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -700,7 +700,7 @@
       "zone": "prado",
       "slot": 13,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-28T19:20:53.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -739,7 +739,7 @@
       "zone": "rocas",
       "slot": 8,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-09-05T02:07:01.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -752,7 +752,7 @@
       "zone": "flores",
       "slot": 9,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-28T21:06:11.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -765,7 +765,7 @@
       "zone": "lago",
       "slot": 7,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-28T19:20:53.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -778,7 +778,7 @@
       "zone": "prado",
       "slot": 14,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-28T17:55:02.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -804,7 +804,7 @@
       "zone": "bosque",
       "slot": 4,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-28T17:55:02.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -817,7 +817,7 @@
       "zone": "prado",
       "slot": 15,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-09-05T02:07:01.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -830,7 +830,7 @@
       "zone": "rocas",
       "slot": 9,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-31T01:48:29.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -856,7 +856,7 @@
       "zone": "rocas",
       "slot": 10,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-28T19:20:53.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -882,7 +882,7 @@
       "zone": "bosque",
       "slot": 5,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-09-05T02:07:01.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -895,7 +895,7 @@
       "zone": "descanso",
       "slot": 5,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-09-05T02:07:01.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -934,7 +934,7 @@
       "zone": "prado",
       "slot": 17,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-28T19:20:53.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -973,7 +973,7 @@
       "zone": "lago",
       "slot": 10,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-28T19:20:53.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -986,7 +986,7 @@
       "zone": "flores",
       "slot": 11,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-09-05T01:32:11.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -1012,7 +1012,7 @@
       "zone": "rocas",
       "slot": 12,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-09-20T01:15:03.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -1025,7 +1025,7 @@
       "zone": "corrales",
       "slot": 6,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-09-19T05:57:09.000Z",
+      "memberSince": null,
       "tenureMonths": 79,
       "tier": "1000"
     },
@@ -1051,7 +1051,7 @@
       "zone": "descanso",
       "slot": 7,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-09-08T22:28:15.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -1064,7 +1064,7 @@
       "zone": "lago",
       "slot": 11,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-09-08T22:28:15.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -1077,7 +1077,7 @@
       "zone": "casa",
       "slot": 5,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-09-08T22:27:13.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     },
@@ -1090,7 +1090,7 @@
       "zone": "bosque",
       "slot": 7,
       "firstSeenAt": "2026-09-22T14:44:32.145Z",
-      "memberSince": "2026-08-28T17:01:01.000Z",
+      "memberSince": null,
       "tenureMonths": 1,
       "tier": "1000"
     }
