@@ -1,0 +1,8 @@
+{
+  "nota": "Quienes aparecen en los CSV pero no son habitantes del Rancho. Las claves son plataforma:id — en Twitch el usuario en minúsculas, en YouTube el id del canal.",
+  "claves": [
+    "twitch:streamlabs",
+    "twitch:nightbot",
+    "twitch:guti"
+  ]
+}

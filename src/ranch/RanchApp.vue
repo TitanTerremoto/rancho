@@ -26,7 +26,7 @@
 import { onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
 import RanchSearch from './components/RanchSearch.vue'
 import ResidentCard from './components/ResidentCard.vue'
-import { createMockSnapshot } from './data/mockSnapshot'
+import { loadSnapshot } from './data/loadSnapshot'
 import { readRanchParams, urlWithUser } from './data/urlParams'
 import type { RanchResident } from './domain/membership'
 import { buildSearchIndex, findByName, type SearchEntry } from './domain/search'
@@ -77,34 +77,43 @@ function say(message: string): void {
   noticeTimer = window.setTimeout(() => (notice.value = ''), NOTICE_MS)
 }
 
-onMounted(() => {
+onMounted(async () => {
   const canvas = canvasRef.value
   if (!canvas) return
   debug.value = params.debug
 
-  scene = new RanchScene(canvas, {
+  const started = new RanchScene(canvas, {
     initialZoom: window.innerWidth < 640 ? 1.5 : 2,
     onSelect: show,
   })
-  // The mock stands in for the backend: it decides species and homes, exactly
-  // as the server will, and the page only renders the snapshot it returns.
-  const snapshot = createMockSnapshot(params.mock, scene.capacity)
-  scene.setSnapshot(snapshot)
+  scene = started
+  // The map is drawn before the inhabitants arrive, so the ranch is never a
+  // blank screen while the snapshot is on its way.
+  started.start()
+  if (params.debug) statsTimer = window.setInterval(() => (stats.value = scene?.stats() ?? stats.value), 500)
+
+  let snapshot
+  try {
+    snapshot = await loadSnapshot(params, started.capacity)
+  } catch {
+    say('No pude cargar a los habitantes del Rancho. Probá recargar la página.')
+    return
+  }
+  // The component may have been torn down while the snapshot was loading.
+  if (scene !== started) return
+
+  started.setSnapshot(snapshot)
   index.value = buildSearchIndex(snapshot.residents, resident => resident.displayName)
-  scene.start()
 
   if (params.user) {
     const resident = findByName(index.value, params.user)
     if (resident) {
-      scene.focus(resident.id, { instant: true })
+      started.focus(resident.id, { instant: true })
       selected.value = resident
-
     } else {
       say(`Nadie llamado “${params.user}” vive en el Rancho.`)
     }
   }
-
-  if (params.debug) statsTimer = window.setInterval(() => (stats.value = scene!.stats()), 500)
 })
 
 onBeforeUnmount(() => {

@@ -71,8 +71,10 @@ describe('mock snapshot', () => {
 
 describe('url params', () => {
   it('defaults to 100 and clamps', () => {
-    expect(readRanchParams('')).toEqual({ mock: 100, user: null, debug: false })
-    expect(readRanchParams('?mock=2000&u=JuanPerez&debug=1')).toEqual({ mock: 2000, user: 'JuanPerez', debug: true })
+    expect(readRanchParams('')).toEqual({ mock: 100, mockRequested: false, user: null, debug: false })
+    expect(readRanchParams('?mock=2000&u=JuanPerez&debug=1')).toEqual({
+      mock: 2000, mockRequested: true, user: 'JuanPerez', debug: true,
+    })
     expect(readRanchParams('?mock=999999').mock).toBe(5000)
     expect(readRanchParams('?mock=-3').mock).toBe(0)
     expect(readRanchParams('?mock=abc').mock).toBe(100)

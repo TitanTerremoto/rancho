@@ -1,0 +1,593 @@
+{
+  "version": 1,
+  "habitantes": {
+    "youtube:UCgA4wVgLo6VG8C6bP2wJAuQ": {
+      "id": "r0",
+      "especie": 11,
+      "zona": "corrales",
+      "slot": 0,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCg5XJ5lELo4yUr4jpOsdcXg": {
+      "id": "r1",
+      "especie": 231,
+      "zona": "lago",
+      "slot": 0,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCszYOJj7sG49GEaDT58rYsw": {
+      "id": "r2",
+      "especie": 295,
+      "zona": "prado",
+      "slot": 0,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCtMU7331MawHxN4ChKVnDJA": {
+      "id": "r3",
+      "especie": 168,
+      "zona": "lago",
+      "slot": 1,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCYG-Kb9SmdCwcWnlZ976qZQ": {
+      "id": "r4",
+      "especie": 185,
+      "zona": "rocas",
+      "slot": 0,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UC2amm9lnVCxpGcx4mWfJuzw": {
+      "id": "r5",
+      "especie": 67,
+      "zona": "rocas",
+      "slot": 1,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCt7vJkYYX0t67kSvpUfN1aQ": {
+      "id": "r6",
+      "especie": 93,
+      "zona": "corrales",
+      "slot": 1,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCEdpe_d6v9YX4eSDz8Q7lnw": {
+      "id": "r7",
+      "especie": 45,
+      "zona": "descanso",
+      "slot": 0,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCHMHSKyOdgFmePJQLHGzZ9w": {
+      "id": "r8",
+      "especie": 221,
+      "zona": "bosque",
+      "slot": 0,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCEZdZ4w0_RU1qfLXrJXXIcg": {
+      "id": "r9",
+      "especie": 211,
+      "zona": "prado",
+      "slot": 1,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCS_5efmW_va9d8DltcsX2Mg": {
+      "id": "ra",
+      "especie": 304,
+      "zona": "flores",
+      "slot": 0,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCHPMc-kMiiVX80qGqEARuJA": {
+      "id": "rb",
+      "especie": 138,
+      "zona": "lago",
+      "slot": 2,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UC8Hv4qFO9iZNDgh9e-x87kg": {
+      "id": "rc",
+      "especie": 436,
+      "zona": "lago",
+      "slot": 3,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCSRN0QhquKLhGcLrziw7HTg": {
+      "id": "rd",
+      "especie": 419,
+      "zona": "flores",
+      "slot": 1,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCNQHbEbUOjcYYbaHhJFTmiw": {
+      "id": "re",
+      "especie": 134,
+      "zona": "prado",
+      "slot": 2,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCOunqLT5ZQvPnt9jalvWm9A": {
+      "id": "rf",
+      "especie": 373,
+      "zona": "bosque",
+      "slot": 1,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCWspcSbkZJgtNKteFHzxBkQ": {
+      "id": "rg",
+      "especie": 81,
+      "zona": "corrales",
+      "slot": 2,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCIRFR-uOeipmmfBuemg0h-g": {
+      "id": "rh",
+      "especie": 461,
+      "zona": "bosque",
+      "slot": 2,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCFqPrp0iAtJWGO0EpmnkWaA": {
+      "id": "ri",
+      "especie": 68,
+      "zona": "rocas",
+      "slot": 2,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "youtube:UCCtMiOyY0wnVgCgGREAwT4g": {
+      "id": "rj",
+      "especie": 92,
+      "zona": "prado",
+      "slot": 3,
+      "desde": "2026-09-22T14:44:32.144Z"
+    },
+    "twitch:axta96": {
+      "id": "rk",
+      "especie": 227,
+      "zona": "prado",
+      "slot": 4,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:ferchu3g": {
+      "id": "rl",
+      "especie": 134,
+      "zona": "flores",
+      "slot": 2,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:deadgajo": {
+      "id": "rm",
+      "especie": 102,
+      "zona": "casa",
+      "slot": 0,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:tincho14___": {
+      "id": "rn",
+      "especie": 331,
+      "zona": "descanso",
+      "slot": 1,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:ianaros": {
+      "id": "ro",
+      "especie": 89,
+      "zona": "flores",
+      "slot": 3,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:rip_dxrky": {
+      "id": "rp",
+      "especie": 267,
+      "zona": "rocas",
+      "slot": 3,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:grima9312": {
+      "id": "rq",
+      "especie": 1,
+      "zona": "prado",
+      "slot": 5,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:jfloresh": {
+      "id": "rr",
+      "especie": 400,
+      "zona": "flores",
+      "slot": 4,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:aloxparatodos": {
+      "id": "rs",
+      "especie": 293,
+      "zona": "descanso",
+      "slot": 2,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:kenneth8pro": {
+      "id": "rt",
+      "especie": 216,
+      "zona": "prado",
+      "slot": 6,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:connynee606": {
+      "id": "ru",
+      "especie": 52,
+      "zona": "flores",
+      "slot": 5,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:jaaskier71": {
+      "id": "rv",
+      "especie": 470,
+      "zona": "casa",
+      "slot": 1,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:ntjamon28": {
+      "id": "rw",
+      "especie": 172,
+      "zona": "lago",
+      "slot": 4,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:bnzi18": {
+      "id": "rx",
+      "especie": 297,
+      "zona": "prado",
+      "slot": 7,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:thanatos9720": {
+      "id": "ry",
+      "especie": 302,
+      "zona": "prado",
+      "slot": 8,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:javitofficial": {
+      "id": "rz",
+      "especie": 27,
+      "zona": "prado",
+      "slot": 9,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:fran_sartori": {
+      "id": "r10",
+      "especie": 406,
+      "zona": "corrales",
+      "slot": 3,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:berserker1045": {
+      "id": "r11",
+      "especie": 256,
+      "zona": "prado",
+      "slot": 10,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:starkillerx": {
+      "id": "r12",
+      "especie": 320,
+      "zona": "prado",
+      "slot": 11,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:griss_v1": {
+      "id": "r13",
+      "especie": 427,
+      "zona": "descanso",
+      "slot": 3,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:camilomaister": {
+      "id": "r14",
+      "especie": 288,
+      "zona": "descanso",
+      "slot": 4,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:hhenry24": {
+      "id": "r15",
+      "especie": 42,
+      "zona": "flores",
+      "slot": 6,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:iskyish": {
+      "id": "r16",
+      "especie": 129,
+      "zona": "casa",
+      "slot": 2,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:zarfet": {
+      "id": "r17",
+      "especie": 66,
+      "zona": "rocas",
+      "slot": 4,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:kingczar14": {
+      "id": "r18",
+      "especie": 201,
+      "zona": "prado",
+      "slot": 12,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:mati1288": {
+      "id": "r19",
+      "especie": 240,
+      "zona": "lago",
+      "slot": 5,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:metapodparapresidente": {
+      "id": "r1a",
+      "especie": 353,
+      "zona": "rocas",
+      "slot": 5,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:jojoshua_joestar077": {
+      "id": "r1b",
+      "especie": 347,
+      "zona": "flores",
+      "slot": 7,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:zardecay": {
+      "id": "r1c",
+      "especie": 12,
+      "zona": "corrales",
+      "slot": 4,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:jaby_g": {
+      "id": "r1d",
+      "especie": 10,
+      "zona": "flores",
+      "slot": 8,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:pinkiloi": {
+      "id": "r1e",
+      "especie": 61,
+      "zona": "corrales",
+      "slot": 5,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:pablo_matiaz": {
+      "id": "r1f",
+      "especie": 415,
+      "zona": "rocas",
+      "slot": 6,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:markitosv": {
+      "id": "r1g",
+      "especie": 80,
+      "zona": "rocas",
+      "slot": 7,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:pevarro822": {
+      "id": "r1h",
+      "especie": 248,
+      "zona": "prado",
+      "slot": 13,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:copiclol": {
+      "id": "r1i",
+      "especie": 67,
+      "zona": "bosque",
+      "slot": 3,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:josegarcia91": {
+      "id": "r1j",
+      "especie": 108,
+      "zona": "lago",
+      "slot": 6,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:mk_sirius12": {
+      "id": "r1k",
+      "especie": 136,
+      "zona": "rocas",
+      "slot": 8,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:fedelo_27": {
+      "id": "r1l",
+      "especie": 84,
+      "zona": "flores",
+      "slot": 9,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:jhoneto92": {
+      "id": "r1m",
+      "especie": 438,
+      "zona": "lago",
+      "slot": 7,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:perezs_3": {
+      "id": "r1n",
+      "especie": 277,
+      "zona": "prado",
+      "slot": 14,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:hectornayib": {
+      "id": "r1o",
+      "especie": 110,
+      "zona": "casa",
+      "slot": 3,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:yebhu": {
+      "id": "r1p",
+      "especie": 475,
+      "zona": "bosque",
+      "slot": 4,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:manuelrubianes7": {
+      "id": "r1q",
+      "especie": 374,
+      "zona": "prado",
+      "slot": 15,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:moyblack": {
+      "id": "r1r",
+      "especie": 137,
+      "zona": "rocas",
+      "slot": 9,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:e_pany": {
+      "id": "r1s",
+      "especie": 148,
+      "zona": "lago",
+      "slot": 8,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:acido2211": {
+      "id": "r1t",
+      "especie": 201,
+      "zona": "rocas",
+      "slot": 10,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:tintinandreew": {
+      "id": "r1u",
+      "especie": 358,
+      "zona": "lago",
+      "slot": 9,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:ghostlybroccoli": {
+      "id": "r1v",
+      "especie": 412,
+      "zona": "bosque",
+      "slot": 5,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:seraphew": {
+      "id": "r1w",
+      "especie": 225,
+      "zona": "descanso",
+      "slot": 5,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:ggoldenarcanine": {
+      "id": "r1x",
+      "especie": 131,
+      "zona": "prado",
+      "slot": 16,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:luluzo_cr": {
+      "id": "r1y",
+      "especie": 343,
+      "zona": "flores",
+      "slot": 10,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:elpayosinson": {
+      "id": "r1z",
+      "especie": 343,
+      "zona": "prado",
+      "slot": 17,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:ursajhon": {
+      "id": "r20",
+      "especie": 412,
+      "zona": "bosque",
+      "slot": 6,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:judini": {
+      "id": "r21",
+      "especie": 165,
+      "zona": "rocas",
+      "slot": 11,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:squintanilla": {
+      "id": "r22",
+      "especie": 132,
+      "zona": "lago",
+      "slot": 10,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:lordbasti": {
+      "id": "r23",
+      "especie": 22,
+      "zona": "flores",
+      "slot": 11,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:angelberto_12": {
+      "id": "r24",
+      "especie": 178,
+      "zona": "descanso",
+      "slot": 6,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:v_vic": {
+      "id": "r25",
+      "especie": 426,
+      "zona": "rocas",
+      "slot": 12,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:checo512": {
+      "id": "r26",
+      "especie": 85,
+      "zona": "corrales",
+      "slot": 6,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:aether_atomic": {
+      "id": "r27",
+      "especie": 5,
+      "zona": "casa",
+      "slot": 4,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:fernandux22": {
+      "id": "r28",
+      "especie": 15,
+      "zona": "descanso",
+      "slot": 7,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:slayerheart_": {
+      "id": "r29",
+      "especie": 263,
+      "zona": "lago",
+      "slot": 11,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:m1nd_re4der": {
+      "id": "r2a",
+      "especie": 85,
+      "zona": "casa",
+      "slot": 5,
+      "desde": "2026-09-22T14:44:32.145Z"
+    },
+    "twitch:aideeisabel": {
+      "id": "r2b",
+      "especie": 28,
+      "zona": "bosque",
+      "slot": 7,
+      "desde": "2026-09-22T14:44:32.145Z"
+    }
+  }
+}

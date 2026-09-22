@@ -6,21 +6,47 @@ cada miembro de YouTube. Entras, buscas tu nombre y descubris cual te toco.
     npm install
     npm run dev     # http://localhost:5173/
 
-## Estado: RANCH-1, prototipo visual
+## Los habitantes salen de dos CSV
 
-Todos los habitantes son **inventados**. No hay Supabase, ni API de Twitch o YouTube,
-ni CSV, ni backend. La ficha lo aclara y la pagina va con `noindex`.
+No hay backend, ni API, ni tokens. Bajas las listas a mano, corres el importador y
+el sitio sigue siendo estatico.
+
+    # 1. YouTube Studio -> Monetizacion -> Membresias -> Descargar
+    #    guardalo como datos/youtube-miembros.csv
+    # 2. Twitch -> Creator Dashboard -> lista de subs
+    #    guardalo como datos/twitch-subs.csv
+    npm run importar
+
+Eso escribe `public/snapshot.json`, que es lo unico que lee la pagina, y actualiza
+`datos/asignaciones.json`.
+
+### datos/asignaciones.json
+
+El registro de quien recibio que Pokemon y en que casa vive. **Nunca se vuelve a
+sortear**: quien ya tiene su Pokemon lo conserva, aunque se de de baja y vuelva
+meses despues. Los que se fueron quedan guardados por si regresan.
+
+Tambien es donde concedes un cambio. Alguien te pide otro Pokemon: le cambias el
+numero de `especie`, corres el importador de nuevo y listo. No hace falta panel de
+administracion.
+
+### datos/excluidos.json
+
+Quienes aparecen en los CSV pero no viven en el Rancho: los bots del canal y vos
+mismo, que ya caminas por el mapa como Guti.
 
 ## Parametros de URL
 
 | | |
 |---|---|
-| `?mock=N` | cuantos habitantes generar (por defecto 100, tope 5000) |
+| `?mock=N` | habitantes inventados en vez del snapshot real (tope 5000) |
 | `?u=nombre` | abrir el rancho sobre ese habitante |
 | `?debug=1` | contador de habitantes, visibles, FPS, chunks y especies |
 
 ## Como esta armado
 
+- `datos/` — los CSV que bajas, el registro de asignaciones y los excluidos.
+- `scripts/importar.ts` — convierte los CSV en el snapshot.
 - `src/ranch/` — el rancho: dominio, mapa, arte, render y la capa Vue.
   - `domain/` — miembros, especies, zonas, antiguedad, busqueda.
   - `world/` — el mapa disenado, los slots, los habitantes, Guti y Sky.
