@@ -1,6 +1,9 @@
-// Nameplates — Rancho
+// Nameplates — Rancho / La Bahía
 //
-// The little label under each inhabitant: platform mark plus the name. They
+// The little label under each inhabitant: platform mark plus the name. The
+// caretakers get one too, with a Poké Ball instead of a platform mark and a
+// warmer plate, so it is obvious at a glance that the two people walking
+// around are not inhabitants. They
 // are drawn on the canvas, never as one DOM node per Pokémon — two thousand
 // of those would sink the page. Each label is painted once into its own small
 // canvas and reused every frame; only the labels actually on screen are ever
@@ -57,6 +60,32 @@ function twitchMark(ctx: CanvasRenderingContext2D, x: number, y: number, s: numb
   ctx.fillRect(x + s * 0.68, y + s * 0.26, s * 0.12, s * 0.34)
 }
 
+/** The caretakers' mark: a small Poké Ball. */
+function caretakerMark(ctx: CanvasRenderingContext2D, x: number, y: number, s: number): void {
+  const cx = x + s / 2
+  const cy = y + s / 2
+  const r = s / 2
+  ctx.fillStyle = '#e8483c'
+  ctx.beginPath()
+  ctx.arc(cx, cy, r, Math.PI, 0)
+  ctx.closePath()
+  ctx.fill()
+  ctx.fillStyle = '#f4f1e8'
+  ctx.beginPath()
+  ctx.arc(cx, cy, r, 0, Math.PI)
+  ctx.closePath()
+  ctx.fill()
+  ctx.fillStyle = '#23232a'
+  ctx.fillRect(cx - r, cy - s * 0.09, s, s * 0.18)
+  ctx.beginPath()
+  ctx.arc(cx, cy, s * 0.2, 0, Math.PI * 2)
+  ctx.fill()
+  ctx.fillStyle = '#f4f1e8'
+  ctx.beginPath()
+  ctx.arc(cx, cy, s * 0.1, 0, Math.PI * 2)
+  ctx.fill()
+}
+
 /** YouTube's red mark: the rounded screen with a play triangle. */
 function youtubeMark(ctx: CanvasRenderingContext2D, x: number, y: number, s: number): void {
   ctx.fillStyle = '#ff0033'
@@ -88,7 +117,7 @@ export class NameplateCache {
     return `600 ${FONT_PX * scale}px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif`
   }
 
-  get(key: string, name: string, platform: Platform, highlighted: boolean): Nameplate {
+  get(key: string, name: string, platform: Platform | null, highlighted: boolean): Nameplate {
     const id = highlighted ? `!${key}` : key
     const existing = this.cache.get(id)
     if (existing) {
@@ -106,7 +135,7 @@ export class NameplateCache {
     return plate
   }
 
-  private paint(name: string, platform: Platform, highlighted: boolean): Nameplate {
+  private paint(name: string, platform: Platform | null, highlighted: boolean): Nameplate {
     if (!this.measure) this.measure = document.createElement('canvas').getContext('2d')
     const probe = this.measure
     let textW = name.length * FONT_PX * 0.6
@@ -123,7 +152,8 @@ export class NameplateCache {
     const ctx = canvas.getContext('2d')!
     ctx.scale(scale, scale)
 
-    ctx.fillStyle = highlighted ? 'rgba(255, 214, 92, 0.96)' : 'rgba(22, 22, 30, 0.72)'
+    const plain = highlighted ? 'rgba(255, 214, 92, 0.96)' : 'rgba(22, 22, 30, 0.72)'
+    ctx.fillStyle = platform === null && !highlighted ? 'rgba(58, 40, 78, 0.82)' : plain
     roundedRect(ctx, 0.5, 0.5, w - 1, h - 1, RADIUS)
     ctx.fill()
     ctx.strokeStyle = highlighted ? 'rgba(120, 78, 0, 0.9)' : 'rgba(0, 0, 0, 0.45)'
@@ -132,7 +162,8 @@ export class NameplateCache {
 
     const markY = (h - MARK) / 2
     if (platform === 'twitch') twitchMark(ctx, PAD_X, markY, MARK)
-    else youtubeMark(ctx, PAD_X, markY, MARK)
+    else if (platform === 'youtube') youtubeMark(ctx, PAD_X, markY, MARK)
+    else caretakerMark(ctx, PAD_X, markY, MARK)
 
     ctx.font = this.font(1)
     ctx.textBaseline = 'middle'

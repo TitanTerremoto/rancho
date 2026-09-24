@@ -8,19 +8,13 @@
 // (RANCH-2). It is pure and prefix-stable: processing members in arrival order,
 // a newcomer never moves anyone who arrived before.
 
+import { assignZoneHomes, preferZone, type ZoneInfo } from '../../shared/site'
 import { unitHash } from './seededRandom'
 
 export const ZONE_IDS = ['casa', 'prado', 'lago', 'bosque', 'flores', 'rocas', 'corrales', 'descanso'] as const
 export type ZoneId = (typeof ZONE_IDS)[number]
 
-export interface ZoneInfo {
-  /** Name shown on the map and in the card. */
-  name: string
-  /** "Vive …" phrase for the card. */
-  where: string
-  /** Share of newcomers that prefer this zone (sums to 1). */
-  share: number
-}
+export type { ZoneInfo }
 
 export const ZONES: Record<ZoneId, ZoneInfo> = {
   casa: { name: 'La Casa', where: 'junto a la casa', share: 0.08 },
@@ -44,12 +38,7 @@ export interface Home {
 
 /** Zone a member prefers, from a hash of their internal id weighted by `share`. */
 export function preferredZone(id: string): ZoneId {
-  let u = unitHash(`zone:${id}`)
-  for (const zone of ZONE_IDS) {
-    u -= ZONES[zone].share
-    if (u < 0) return zone
-  }
-  return ZONE_IDS[ZONE_IDS.length - 1]
+  return preferZone(unitHash(`zone:${id}`), ZONE_IDS, ZONES) as ZoneId
 }
 
 /**
@@ -57,21 +46,6 @@ export function preferredZone(id: string): ZoneId {
  * preferred zone; a full zone sends them to the zone with most room left.
  * Members beyond the total capacity get no home (and are not drawn).
  */
-export function assignHomes(ids: readonly string[], capacity: Readonly<Record<ZoneId, number>>): Map<string, Home> {
-  const used = Object.fromEntries(ZONE_IDS.map(z => [z, 0])) as Record<ZoneId, number>
-  const homes = new Map<string, Home>()
-  for (const id of ids) {
-    let zone = preferredZone(id)
-    if (used[zone] >= capacity[zone]) {
-      let best: ZoneId | null = null
-      for (const z of ZONE_IDS) {
-        const room = capacity[z] - used[z]
-        if (room > 0 && (best === null || room > capacity[best] - used[best])) best = z
-      }
-      if (best === null) continue
-      zone = best
-    }
-    homes.set(id, { zone, slot: used[zone]++ })
-  }
-  return homes
+export function assignHomes(ids: readonly string[], capacity: Readonly<Record<string, number>>): Map<string, Home> {
+  return assignZoneHomes(ids, capacity, ZONE_IDS, preferredZone) as Map<string, Home>
 }

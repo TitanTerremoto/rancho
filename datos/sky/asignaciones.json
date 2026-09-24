@@ -1,0 +1,516 @@
+{
+  "version": 1,
+  "habitantes": {
+    "youtube:UCszYOJj7sG49GEaDT58rYsw": {
+      "id": "r0",
+      "especie": 295,
+      "zona": "playa",
+      "slot": 0,
+      "desde": "2026-09-22T20:07:17.468Z"
+    },
+    "youtube:UC4WDD8TysLiICbVIkAD4ESA": {
+      "id": "r1",
+      "especie": 4,
+      "zona": "playa",
+      "slot": 1,
+      "desde": "2026-09-22T20:07:17.468Z"
+    },
+    "youtube:UCOunqLT5ZQvPnt9jalvWm9A": {
+      "id": "r2",
+      "especie": 373,
+      "zona": "paseo",
+      "slot": 0,
+      "desde": "2026-09-22T20:07:17.468Z"
+    },
+    "youtube:UCZbUlEASUG7crYyiwgCDtDw": {
+      "id": "r3",
+      "especie": 448,
+      "zona": "dunas",
+      "slot": 0,
+      "desde": "2026-09-22T20:07:17.468Z"
+    },
+    "youtube:UCi9LTOsJyrkj6W-3dnfvuQA": {
+      "id": "r4",
+      "especie": 69,
+      "zona": "dunas",
+      "slot": 1,
+      "desde": "2026-09-22T20:07:17.468Z"
+    },
+    "youtube:UCnMnmyKeQQp9PrzX5XEhJdA": {
+      "id": "r5",
+      "especie": 19,
+      "zona": "arrecife",
+      "slot": 0,
+      "desde": "2026-09-22T20:07:17.468Z"
+    },
+    "youtube:UCzV63fcrixNX3dTYwsOgRcg": {
+      "id": "r6",
+      "especie": 430,
+      "zona": "mercado",
+      "slot": 0,
+      "desde": "2026-09-22T20:07:17.468Z"
+    },
+    "youtube:UC4nKG496_QnURdZhk-UNNwQ": {
+      "id": "r7",
+      "especie": 373,
+      "zona": "muelle",
+      "slot": 0,
+      "desde": "2026-09-22T20:07:17.468Z"
+    },
+    "youtube:UC8clnjZseq0kzW2htb8S5fg": {
+      "id": "r8",
+      "especie": 407,
+      "zona": "dunas",
+      "slot": 2,
+      "desde": "2026-09-22T20:07:17.468Z"
+    },
+    "youtube:UC59idKjtD3UC6ydYERGpAOQ": {
+      "id": "r9",
+      "especie": 337,
+      "zona": "muelle",
+      "slot": 1,
+      "desde": "2026-09-22T20:07:17.468Z"
+    },
+    "twitch:alberto_olea": {
+      "id": "ra",
+      "especie": 68,
+      "zona": "dunas",
+      "slot": 3,
+      "desde": "2026-09-22T20:07:17.468Z"
+    },
+    "twitch:hikari_highwind": {
+      "id": "rb",
+      "especie": 74,
+      "zona": "pinar",
+      "slot": 0,
+      "desde": "2026-09-22T20:07:17.468Z"
+    },
+    "twitch:loguast": {
+      "id": "rc",
+      "especie": 192,
+      "zona": "playa",
+      "slot": 2,
+      "desde": "2026-09-22T20:07:17.468Z"
+    },
+    "twitch:magikarpbd": {
+      "id": "rd",
+      "especie": 15,
+      "zona": "pinar",
+      "slot": 1,
+      "desde": "2026-09-22T20:07:17.468Z"
+    },
+    "twitch:omegatrow": {
+      "id": "re",
+      "especie": 262,
+      "zona": "paseo",
+      "slot": 1,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:andycd6": {
+      "id": "rf",
+      "especie": 42,
+      "zona": "pinar",
+      "slot": 2,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:santignzz7": {
+      "id": "rg",
+      "especie": 425,
+      "zona": "arrecife",
+      "slot": 1,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:alexie_vr": {
+      "id": "rh",
+      "especie": 435,
+      "zona": "arrecife",
+      "slot": 2,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:oscar_gtz": {
+      "id": "ri",
+      "especie": 201,
+      "zona": "mercado",
+      "slot": 1,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:para__mada": {
+      "id": "rj",
+      "especie": 37,
+      "zona": "arrecife",
+      "slot": 3,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:hrsnfbrn": {
+      "id": "rk",
+      "especie": 404,
+      "zona": "muelle",
+      "slot": 2,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:moyblack": {
+      "id": "rl",
+      "especie": 137,
+      "zona": "dunas",
+      "slot": 4,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:frijolreyes": {
+      "id": "rm",
+      "especie": 376,
+      "zona": "muelle",
+      "slot": 3,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:mgx_jonyxd777": {
+      "id": "rn",
+      "especie": 218,
+      "zona": "muelle",
+      "slot": 4,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:delphrost": {
+      "id": "ro",
+      "especie": 466,
+      "zona": "mercado",
+      "slot": 2,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:grima9312": {
+      "id": "rp",
+      "especie": 1,
+      "zona": "playa",
+      "slot": 3,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:papabatt_": {
+      "id": "rq",
+      "especie": 424,
+      "zona": "mercado",
+      "slot": 3,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:mgxmu": {
+      "id": "rr",
+      "especie": 425,
+      "zona": "mercado",
+      "slot": 4,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:rassnic_": {
+      "id": "rs",
+      "especie": 434,
+      "zona": "pinar",
+      "slot": 3,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:mik004": {
+      "id": "rt",
+      "especie": 160,
+      "zona": "muelle",
+      "slot": 5,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:iserenia": {
+      "id": "ru",
+      "especie": 113,
+      "zona": "paseo",
+      "slot": 2,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:0liveer___": {
+      "id": "rv",
+      "especie": 179,
+      "zona": "pinar",
+      "slot": 4,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:nairb__25": {
+      "id": "rw",
+      "especie": 395,
+      "zona": "arrecife",
+      "slot": 4,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:josephomor1_": {
+      "id": "rx",
+      "especie": 193,
+      "zona": "arrecife",
+      "slot": 5,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:rayiworld": {
+      "id": "ry",
+      "especie": 332,
+      "zona": "paseo",
+      "slot": 3,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:julio_hernandez_": {
+      "id": "rz",
+      "especie": 411,
+      "zona": "faro",
+      "slot": 0,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:exderubyqon": {
+      "id": "r10",
+      "especie": 357,
+      "zona": "pinar",
+      "slot": 5,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:scarcee": {
+      "id": "r11",
+      "especie": 139,
+      "zona": "mercado",
+      "slot": 5,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:arisuumy": {
+      "id": "r12",
+      "especie": 112,
+      "zona": "faro",
+      "slot": 1,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:osirysvx": {
+      "id": "r13",
+      "especie": 298,
+      "zona": "dunas",
+      "slot": 5,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:zarfet": {
+      "id": "r14",
+      "especie": 66,
+      "zona": "dunas",
+      "slot": 6,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:siulselasor": {
+      "id": "r15",
+      "especie": 320,
+      "zona": "paseo",
+      "slot": 4,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:robertocarlo_rccs": {
+      "id": "r16",
+      "especie": 45,
+      "zona": "playa",
+      "slot": 4,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:poke_dachii": {
+      "id": "r17",
+      "especie": 352,
+      "zona": "playa",
+      "slot": 5,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:erichugoz": {
+      "id": "r18",
+      "especie": 296,
+      "zona": "arrecife",
+      "slot": 6,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:sooyleeo": {
+      "id": "r19",
+      "especie": 397,
+      "zona": "pinar",
+      "slot": 6,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:stevebd_": {
+      "id": "r1a",
+      "especie": 369,
+      "zona": "playa",
+      "slot": 6,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:luisghdz958": {
+      "id": "r1b",
+      "especie": 191,
+      "zona": "playa",
+      "slot": 7,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:elretah": {
+      "id": "r1c",
+      "especie": 392,
+      "zona": "dunas",
+      "slot": 7,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:axlbenitez2": {
+      "id": "r1d",
+      "especie": 456,
+      "zona": "playa",
+      "slot": 8,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:xmabelssx": {
+      "id": "r1e",
+      "especie": 356,
+      "zona": "playa",
+      "slot": 9,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:kingczar14": {
+      "id": "r1f",
+      "especie": 201,
+      "zona": "playa",
+      "slot": 10,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:katity13": {
+      "id": "r1g",
+      "especie": 397,
+      "zona": "playa",
+      "slot": 11,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:cachogame3r": {
+      "id": "r1h",
+      "especie": 453,
+      "zona": "paseo",
+      "slot": 5,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:sophie_xidd": {
+      "id": "r1i",
+      "especie": 422,
+      "zona": "muelle",
+      "slot": 6,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:mrphonziedk": {
+      "id": "r1j",
+      "especie": 348,
+      "zona": "pinar",
+      "slot": 7,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:nitroflash7f": {
+      "id": "r1k",
+      "especie": 4,
+      "zona": "muelle",
+      "slot": 7,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:carolynagmez": {
+      "id": "r1l",
+      "especie": 281,
+      "zona": "dunas",
+      "slot": 8,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:axelarenas21": {
+      "id": "r1m",
+      "especie": 32,
+      "zona": "faro",
+      "slot": 2,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:nib_mgx": {
+      "id": "r1n",
+      "especie": 8,
+      "zona": "playa",
+      "slot": 12,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:marcosluna131": {
+      "id": "r1o",
+      "especie": 349,
+      "zona": "mercado",
+      "slot": 6,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:santii_44": {
+      "id": "r1p",
+      "especie": 105,
+      "zona": "muelle",
+      "slot": 8,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:ischulo23": {
+      "id": "r1q",
+      "especie": 308,
+      "zona": "playa",
+      "slot": 13,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:dsaswunborn": {
+      "id": "r1r",
+      "especie": 456,
+      "zona": "muelle",
+      "slot": 9,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:pumamhbt": {
+      "id": "r1s",
+      "especie": 210,
+      "zona": "faro",
+      "slot": 3,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:brandonstark007": {
+      "id": "r1t",
+      "especie": 352,
+      "zona": "playa",
+      "slot": 14,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:francsc5": {
+      "id": "r1u",
+      "especie": 63,
+      "zona": "playa",
+      "slot": 15,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:alexsalazarr": {
+      "id": "r1v",
+      "especie": 176,
+      "zona": "paseo",
+      "slot": 6,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:hhenry24": {
+      "id": "r1w",
+      "especie": 42,
+      "zona": "mercado",
+      "slot": 7,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:lordbasti": {
+      "id": "r1x",
+      "especie": 22,
+      "zona": "dunas",
+      "slot": 9,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:barber29": {
+      "id": "r1y",
+      "especie": 96,
+      "zona": "mercado",
+      "slot": 8,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:oscar_prz7": {
+      "id": "r1z",
+      "especie": 233,
+      "zona": "dunas",
+      "slot": 10,
+      "desde": "2026-09-22T20:07:17.469Z"
+    },
+    "twitch:perezs_3": {
+      "id": "r20",
+      "especie": 277,
+      "zona": "playa",
+      "slot": 16,
+      "desde": "2026-09-22T20:07:17.469Z"
+    }
+  }
+}

@@ -9,31 +9,37 @@
 // persistent (RANCH-2) they are frozen, so editing the map cannot move anyone.
 
 import { hash2 } from '../../engine/noise'
-import { ZONE_IDS, type ZoneId } from '../domain/zones'
+import type { Pt, SiteMap } from '../../shared/site'
+import { ZONE_IDS } from '../domain/zones'
 import { ZONE_FOCUS } from './ranchLayout'
-import { RANCH_SEED, type RanchMap } from './ranchMap'
+import { RANCH_SEED } from './ranchMap'
 
 export interface Tile {
   tx: number
   ty: number
 }
 
-export type ZoneSlots = Record<ZoneId, Tile[]>
+export type ZoneSlots = Record<string, Tile[]>
 
 /** Minimum Chebyshev distance between first-pass homes. */
 export const SPACED = 2
 
-export function buildSlots(map: RanchMap): ZoneSlots {
-  const out = {} as ZoneSlots
-  for (const zone of ZONE_IDS) {
-    const z = ZONE_IDS.indexOf(zone)
-    const focus = ZONE_FOCUS[zone]
+export function buildSlots(
+  map: SiteMap,
+  zoneIds: readonly string[] = ZONE_IDS,
+  focusOf: Record<string, Pt> = ZONE_FOCUS,
+  seed: number = RANCH_SEED,
+): ZoneSlots {
+  const out: ZoneSlots = {}
+  for (const zone of zoneIds) {
+    const z = zoneIds.indexOf(zone)
+    const focus = focusOf[zone]
     const candidates: { tile: Tile; order: number }[] = []
     for (let ty = 0; ty < map.h; ty++) {
       for (let tx = 0; tx < map.w; tx++) {
         const i = ty * map.w + tx
-        if (map.zones[i] !== z || map.solid[i] || map.path[i] || map.reserved[i]) continue
-        const order = Math.hypot(tx + 0.5 - focus.x, ty + 0.5 - focus.y) + hash2(tx, ty, RANCH_SEED + 97) * 2.5
+        if (map.zones[i] !== z || map.solid[i] || map.path[i] || map.reserved[i] || map.water[i]) continue
+        const order = Math.hypot(tx + 0.5 - focus.x, ty + 0.5 - focus.y) + hash2(tx, ty, seed + 97) * 2.5
         candidates.push({ tile: { tx, ty }, order })
       }
     }
@@ -61,6 +67,6 @@ export function buildSlots(map: RanchMap): ZoneSlots {
   return out
 }
 
-export function slotCapacity(slots: ZoneSlots): Record<ZoneId, number> {
-  return Object.fromEntries(ZONE_IDS.map(zone => [zone, slots[zone].length])) as Record<ZoneId, number>
+export function slotCapacity(slots: ZoneSlots): Record<string, number> {
+  return Object.fromEntries(Object.entries(slots).map(([zone, tiles]) => [zone, tiles.length]))
 }

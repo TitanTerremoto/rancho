@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "importar": "tsx scripts/importar.ts",
+    "importar:sky": "tsx scripts/importar.ts sky",
     "preview": "vite preview",
     "typecheck": "vue-tsc --noEmit",
     "test": "vitest run",

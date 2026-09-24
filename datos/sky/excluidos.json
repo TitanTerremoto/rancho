@@ -1,0 +1,9 @@
+{
+  "nota": "Quienes aparecen en los CSV pero no son habitantes de La Bahía. Las claves son plataforma:id — en Twitch el usuario en minúsculas, en YouTube el id del canal.",
+  "claves": [
+    "twitch:iskyish",
+    "twitch:nightbot",
+    "twitch:streamlabs",
+    "twitch:guti"
+  ]
+}

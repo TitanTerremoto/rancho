@@ -5,6 +5,7 @@
 // long someone has been subscribed. Membership length only appears when the
 // source actually provides it (YouTube Studio's export does, Twitch does not).
 
+import type { ZoneTable } from '../../shared/site'
 import type { RanchResident } from './membership'
 import { ZONES } from './zones'
 
@@ -42,10 +43,21 @@ export interface CardFact {
   value: string
 }
 
-export function residentFacts(resident: RanchResident): CardFact[] {
-  const facts: CardFact[] = [{ label: 'En el Rancho desde', value: formatDate(resident.firstSeenAt) }]
+export interface FactOptions {
+  /** Zone table of the place this resident lives in; the ranch's by default. */
+  zones?: ZoneTable
+  /** Wording of the arrival date: "En el Rancho desde", "En La Bahía desde". */
+  sinceLabel?: string
+}
+
+export function residentFacts(resident: RanchResident, options: FactOptions = {}): CardFact[] {
+  const zones: ZoneTable = options.zones ?? ZONES
+  const facts: CardFact[] = [
+    { label: options.sinceLabel ?? 'En el Rancho desde', value: formatDate(resident.firstSeenAt) },
+  ]
   if (resident.memberSince) facts.push({ label: 'Miembro desde', value: formatDate(resident.memberSince) })
   if (resident.tenureMonths !== null) facts.push({ label: 'Antigüedad', value: formatMonths(resident.tenureMonths) })
-  facts.push({ label: 'Vive', value: ZONES[resident.zone].where })
+  const where = zones[resident.zone]?.where
+  if (where) facts.push({ label: 'Vive', value: where })
   return facts
 }

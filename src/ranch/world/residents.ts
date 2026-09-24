@@ -15,10 +15,10 @@
 
 import { createActor, isMoving, tryStep, type Actor, type MoveRules } from '../../engine/actors'
 import { loadOverworldFrames, type Dir, type PokemonFrames } from '../../engine/characters'
+import type { SiteMap } from '../../shared/site'
 import { devWarn } from '../../shared/utils/devTools'
 import type { RanchResident } from '../domain/membership'
 import { hashString, seededRandom } from '../domain/seededRandom'
-import type { RanchMap } from './ranchMap'
 import type { ZoneSlots } from './slots'
 
 /** Seconds an inhabitant stays put between decisions. */
@@ -115,7 +115,7 @@ function stepHome(life: Inhabitant, rules: MoveRules): boolean {
 }
 
 /** Blocks a step that leaves the map, hits something solid or leaves the zone. */
-export function inhabitantRules(map: RanchMap, occupied: (tx: number, ty: number, self: Actor) => boolean): MoveRules {
+export function inhabitantRules(map: SiteMap, occupied: (tx: number, ty: number, self: Actor) => boolean): MoveRules {
   return {
     blocked(actor, tx, ty) {
       if (!map.isHabitable(tx, ty)) return true

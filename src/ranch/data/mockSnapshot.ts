@@ -1,4 +1,4 @@
-// Mock server — Rancho (RANCH-1)
+// Mock server — Rancho / La Bahía
 //
 // Plays the part of the future backend: takes normalized memberships in
 // arrival order and assigns what the server will own in RANCH-2 — internal
@@ -6,10 +6,10 @@
 // the same snapshot shape the real one will. The page never assigns anything
 // itself; it only renders what a snapshot says.
 
+import type { Home, ZoneGuardSite } from './siteData'
 import { cleanDisplayName, parseSnapshot, type NormalizedMembership, type RanchSnapshot } from '../domain/membership'
 import { hashString } from '../domain/seededRandom'
 import { RANDOM_POOL } from '../domain/species'
-import { assignHomes, type ZoneId } from '../domain/zones'
 import { mockMemberships } from './mockMembers'
 
 const DAY = 86_400_000
@@ -37,13 +37,14 @@ function firstSeen(i: number, today: number): string {
 }
 
 export function createMockSnapshot(
+  site: ZoneGuardSite,
   count: number,
-  capacity: Readonly<Record<ZoneId, number>>,
+  capacity: Readonly<Record<string, number>>,
   now: Date = new Date(),
 ): RanchSnapshot {
   const members = mockMemberships(count)
   const ids = members.map((_, i) => `r${i.toString(36)}`)
-  const homes = assignHomes(ids, capacity)
+  const homes: Map<string, Home> = site.assignHomes(ids, capacity)
   const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
   const residents = members.flatMap((member, i) => {
     const home = homes.get(ids[i])
@@ -63,5 +64,5 @@ export function createMockSnapshot(
     }]
   })
   // Same validation path a fetched snapshot will take.
-  return parseSnapshot({ version: 1, generatedAt: new Date(today).toISOString(), residents })
+  return parseSnapshot({ version: 1, generatedAt: new Date(today).toISOString(), residents }, site.isZone)
 }

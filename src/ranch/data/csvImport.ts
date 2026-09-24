@@ -74,27 +74,39 @@ export function parseCsv(text: string): Record<string, string>[] {
     .map(r => Object.fromEntries(keys.map((k, i) => [k, (r[i] ?? '').trim()])))
 }
 
+/**
+ * A column, by any of the names the export has been seen to use. YouTube
+ * Studio labels the profile link "Enlace al perfil" on one channel and
+ * "Vínculo al perfil" on another, so a single spelling is not safe to require.
+ */
+type Column = readonly string[]
+
+const nameOf = (row: Record<string, string>, column: Column): string | null =>
+  column.find(name => name in row) ?? null
+
+const valueOf = (row: Record<string, string>, column: Column): string => {
+  const name = nameOf(row, column)
+  return name === null ? '' : row[name]
+}
+
 /** Fails loudly and usefully when an export changes its column names. */
-function requireColumns(rows: Record<string, string>[], needed: string[], source: string): void {
+function requireColumns(rows: Record<string, string>[], needed: Column[], source: string): void {
   if (!rows.length) return
-  const have = Object.keys(rows[0])
-  const missing = needed.filter(n => !have.includes(n))
+  const missing = needed.filter(column => nameOf(rows[0], column) === null)
   if (missing.length) {
-    throw new Error(
-      `El export de ${source} no trae ${missing.map(m => `"${m}"`).join(', ')}. ` +
-        `Columnas encontradas: ${have.map(h => `"${h}"`).join(', ')}.`,
-    )
+    const wanted = missing.map(c => c.map(n => `"${n}"`).join(' o ')).join(', ')
+    const have = Object.keys(rows[0]).map(h => `"${h}"`).join(', ')
+    throw new Error(`El export de ${source} no trae ${wanted}. Columnas encontradas: ${have}.`)
   }
 }
 
-const YOUTUBE_COLUMNS = [
-  'Miembro',
-  'Enlace al perfil',
-  'Nivel actual',
-  'Tiempo total como miembro (meses)',
-  'Última actualización',
-  'Marca de tiempo de la última actualización',
-]
+const YT_NAME: Column = ['Miembro']
+const YT_LINK: Column = ['Enlace al perfil', 'Vínculo al perfil']
+const YT_LEVEL: Column = ['Nivel actual']
+const YT_TENURE: Column = ['Tiempo total como miembro (meses)']
+const YT_UPDATE: Column = ['Última actualización']
+const YT_UPDATED_AT: Column = ['Marca de tiempo de la última actualización']
+const YOUTUBE_COLUMNS = [YT_NAME, YT_LINK, YT_LEVEL, YT_TENURE, YT_UPDATE, YT_UPDATED_AT]
 
 /** Channel id out of the profile link: the only stable identity the export gives. */
 function youtubeChannelId(link: string): string | null {
@@ -115,25 +127,29 @@ export function fromYouTube(rows: Record<string, string>[]): NormalizedMembershi
   requireColumns(rows, YOUTUBE_COLUMNS, 'YouTube')
   const out: NormalizedMembership[] = []
   for (const row of rows) {
-    const id = youtubeChannelId(row['Enlace al perfil'])
-    const displayName = cleanDisplayName(row['Miembro'])
+    const id = youtubeChannelId(valueOf(row, YT_LINK))
+    const displayName = cleanDisplayName(valueOf(row, YT_NAME))
     if (!id || !displayName) continue
-    // "Se unió" dates the membership; "Volvió a unirse" only dates the return,
-    // so the join date is left out rather than misreported.
-    const joined = row['Última actualización'].toLowerCase().startsWith('se unió')
+    // "Se unió" dates the membership. A return reads "Volvió a unirse" on one
+    // channel and "Se volvió a unir" on another, and either way it dates the
+    // return, not the join, so the date is left out rather than misreported.
+    const joined = valueOf(row, YT_UPDATE).toLowerCase().startsWith('se unió')
     out.push({
       platform: 'youtube',
       platformUserId: id,
       displayName,
-      memberSince: joined ? isoOrNull(row['Marca de tiempo de la última actualización']) : null,
-      tenureMonths: months(row['Tiempo total como miembro (meses)']),
-      tier: row['Nivel actual'] || null,
+      memberSince: joined ? isoOrNull(valueOf(row, YT_UPDATED_AT)) : null,
+      tenureMonths: months(valueOf(row, YT_TENURE)),
+      tier: valueOf(row, YT_LEVEL) || null,
     })
   }
   return out
 }
 
-const TWITCH_COLUMNS = ['Username', 'Current Tier', 'Tenure']
+const TW_USER: Column = ['Username']
+const TW_TIER: Column = ['Current Tier']
+const TW_TENURE: Column = ['Tenure']
+const TWITCH_COLUMNS = [TW_USER, TW_TIER, TW_TENURE]
 
 const TWITCH_TIERS: Record<string, string> = { 'tier 1': '1000', 'tier 2': '2000', 'tier 3': '3000' }
 
@@ -141,7 +157,7 @@ export function fromTwitch(rows: Record<string, string>[]): NormalizedMembership
   requireColumns(rows, TWITCH_COLUMNS, 'Twitch')
   const out: NormalizedMembership[] = []
   for (const row of rows) {
-    const login = row['Username'].trim()
+    const login = valueOf(row, TW_USER).trim()
     const displayName = cleanDisplayName(login)
     if (!login || !displayName) continue
     out.push({
@@ -153,8 +169,8 @@ export function fromTwitch(rows: Record<string, string>[]): NormalizedMembership
       // this channel's own export it disagrees with Tenure for subscribers of
       // six years, so it is never reported as a join date. Tenure stands alone.
       memberSince: null,
-      tenureMonths: months(row['Tenure']),
-      tier: TWITCH_TIERS[row['Current Tier'].trim().toLowerCase()] ?? null,
+      tenureMonths: months(valueOf(row, TW_TENURE)),
+      tier: TWITCH_TIERS[valueOf(row, TW_TIER).trim().toLowerCase()] ?? null,
     })
   }
   return out

@@ -7,10 +7,10 @@
 // a decal split across two chunks joins seamlessly.
 
 import { hash2 } from '../../engine/noise'
+import type { PixelSink } from '../../shared/site'
 import type { DecalDef } from '../world/ranchLayout'
 
-/** Paints one world pixel. */
-export type PixelSink = (x: number, y: number, color: string) => void
+export type { PixelSink }
 
 const TILE = 16
 

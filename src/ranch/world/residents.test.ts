@@ -2,13 +2,14 @@ import { describe, expect, it } from 'vitest'
 import { advance, type Actor } from '../../engine/actors'
 import type { RanchResident } from '../domain/membership'
 import { createMockSnapshot } from '../data/mockSnapshot'
+import { ranchSite } from '../site'
 import { RanchMap } from './ranchMap'
 import { createInhabitants, inhabitantRules, ROAM, THINK_MAX, THINK_MIN, thinkInhabitant } from './residents'
 import { buildSlots, slotCapacity } from './slots'
 
 const map = new RanchMap()
 const slots = buildSlots(map)
-const snapshot = createMockSnapshot(120, slotCapacity(slots), new Date('2026-09-01T00:00:00Z'))
+const snapshot = createMockSnapshot(ranchSite, 120, slotCapacity(slots), new Date('2026-09-01T00:00:00Z'))
 
 function lives(residents: readonly RanchResident[] = snapshot.residents) {
   return createInhabitants(residents, slots, 0)

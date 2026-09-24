@@ -154,8 +154,8 @@ export function buildBarn(): Sprite {
   return p.toSprite({ ax: W / 2, ay: H - 1 })
 }
 
-/** Entrance arch spanning the path, with the ranch's name on the board. */
-export function buildArch(width: number): Sprite {
+/** Entrance arch spanning the path, with the place's name on the board. */
+export function buildArch(width: number, text = 'RANCHO DE GUTI'): Sprite {
   const H = 58
   const p = new Painter(width, H)
   const left = 5
@@ -177,7 +177,6 @@ export function buildArch(width: number): Sprite {
     p.set(x, by + 3, '#4a3020')
     p.set(x, by + bh - 4, '#4a3020')
   }
-  const text = 'RANCHO DE GUTI'
   const scale = 2
   const tx = Math.round((width - textWidth(text, scale)) / 2)
   const ty = by + Math.round((bh - FONT_HEIGHT * scale) / 2)

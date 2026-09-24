@@ -1,4 +1,4 @@
-// Standing scenery — Rancho
+// Standing scenery — Rancho / La Bahía
 //
 // Everything that stands on the ground and has to sort against the Pokémon by
 // depth: the designed props, the paddock fences (autotiled from their
@@ -8,9 +8,8 @@
 // frame only binary-searches the band it can see instead of walking the map.
 
 import type { Sprite } from '../../engine/sprite'
+import type { SiteArt, SiteMap } from '../../shared/site'
 import { FENCE_BASE_Y, FENCE_E, FENCE_N, FENCE_S, FENCE_W } from '../art/fenceArt'
-import type { RanchMap } from '../world/ranchMap'
-import type { RanchArt } from './ranchArt'
 
 export interface SceneryItem {
   /** Feet of the sprite, in world pixels. */
@@ -24,7 +23,7 @@ export interface SceneryItem {
   half: number
 }
 
-/** How far outside the map trees keep going, so the edge is never a bare line. */
+/** How far outside the map decor keeps going, so the edge is never a bare line. */
 const OUTER_TILES = 4
 
 function push(out: SceneryItem[], frames: Sprite[], x: number, y: number, variant: number, animated: boolean): void {
@@ -32,11 +31,12 @@ function push(out: SceneryItem[], frames: Sprite[], x: number, y: number, varian
   out.push({ x, y, frames, variant, animated, half: frames[0].w / 2 + 2 })
 }
 
-export function buildScenery(map: RanchMap, art: RanchArt): SceneryItem[] {
+export function buildScenery(map: SiteMap, art: SiteArt): SceneryItem[] {
   const items: SceneryItem[] = []
 
   for (const prop of map.props) {
-    push(items, art.props[prop.kind], prop.x, prop.y, prop.variant ?? 0, art.animated.has(prop.kind))
+    const frames = art.props[prop.kind]
+    if (frames) push(items, frames, prop.x, prop.y, prop.variant ?? 0, art.animated.has(prop.kind))
   }
 
   for (let ty = 0; ty < map.h; ty++) {

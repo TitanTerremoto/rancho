@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { ranchSite } from '../site'
 import { ZONE_IDS, type ZoneId } from '../domain/zones'
 import { mockMemberships } from './mockMembers'
 import { createMockSnapshot } from './mockSnapshot'
@@ -43,19 +44,19 @@ describe('mock memberships', () => {
 
 describe('mock snapshot', () => {
   it('assigns the examples their Pokémon and everyone a species from the pool', () => {
-    const snapshot = createMockSnapshot(100, roomy, now)
+    const snapshot = createMockSnapshot(ranchSite, 100, roomy, now)
     expect(snapshot.residents[0]).toMatchObject({ displayName: 'Terremotito123', speciesId: 258 })
     expect(snapshot.residents[1]).toMatchObject({ displayName: 'JuanPerez', speciesId: 197 })
   })
 
   it('is stable across reloads and across sizes', () => {
-    const a = createMockSnapshot(100, roomy, now)
-    const b = createMockSnapshot(2000, roomy, now)
+    const a = createMockSnapshot(ranchSite, 100, roomy, now)
+    const b = createMockSnapshot(ranchSite, 2000, roomy, now)
     expect(b.residents.slice(0, 100)).toEqual(a.residents)
   })
 
   it('orders arrivals oldest first, within the last two years', () => {
-    const residents = createMockSnapshot(500, roomy, now).residents
+    const residents = createMockSnapshot(ranchSite, 500, roomy, now).residents
     for (let i = 1; i < residents.length; i++) {
       expect(Date.parse(residents[i].firstSeenAt)).toBeGreaterThanOrEqual(Date.parse(residents[i - 1].firstSeenAt) - 86_400_000)
     }
@@ -63,7 +64,7 @@ describe('mock snapshot', () => {
   })
 
   it('drops members whose name is empty once cleaned', () => {
-    const residents = createMockSnapshot(200, roomy, now).residents
+    const residents = createMockSnapshot(ranchSite, 200, roomy, now).residents
     expect(residents.every(r => r.displayName.trim().length > 0)).toBe(true)
     expect(residents.some(r => r.displayName.includes('‮'))).toBe(false)
   })

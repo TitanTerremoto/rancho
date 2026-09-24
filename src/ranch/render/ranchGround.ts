@@ -1,10 +1,10 @@
-// Baked ground — Rancho
+// Baked ground — Rancho / La Bahía
 //
 // The WildLands chunk baker draws the terrain (grass, paths, sand, water and
-// their soft edges) straight from RanchMap. On top of each freshly baked chunk
-// the ranch paints its own flat details — flower beds, furrows, the dock, the
-// picnic blanket, the plaza mosaic, lily pads — so they cost nothing per frame
-// and join seamlessly across chunk borders.
+// their soft edges) straight from the site's map. On top of each freshly baked
+// chunk the site paints its own flat details — flower beds and lily pads on
+// the ranch, planks and foam on the bay — so they cost nothing per frame and
+// join seamlessly across chunk borders.
 //
 // Chunks are baked when they first come into view and dropped once they have
 // been off screen for a while, so a long pan does not grow the page forever.
@@ -12,8 +12,7 @@
 import { buildChunkPixels, CHUNK_PX, CHUNK_TILES } from '../../engine/chunks'
 import { packColor, pixelsToCanvas } from '../../engine/pixels'
 import { WATER_TEX, waterFramePixels } from '../../engine/terrainArt'
-import { paintDecal, paintLily, type PixelSink } from '../art/decalArt'
-import type { RanchMap } from '../world/ranchMap'
+import type { PixelSink, SiteMap } from '../../shared/site'
 
 /** Frames of the water loop; the baker leaves water transparent for this layer. */
 const WATER_FRAMES = 8
@@ -28,7 +27,7 @@ interface GroundChunk {
 }
 
 export class RanchGround {
-  private readonly map: RanchMap
+  private readonly map: SiteMap
   private readonly chunks = new Map<string, GroundChunk>()
   private readonly colors = new Map<string, number>()
   private frame = 0
@@ -41,7 +40,7 @@ export class RanchGround {
   private pattern: CanvasPattern | null = null
   private patternFrame = -1
 
-  constructor(map: RanchMap) {
+  constructor(map: SiteMap) {
     this.map = map
     this.sink = (x, y, color) => {
       const px = Math.round(x) - this.originX
@@ -74,16 +73,7 @@ export class RanchGround {
     this.originY = cy * CHUNK_PX
     const tx0 = cx * CHUNK_TILES
     const ty0 = cy * CHUNK_TILES
-    const tx1 = tx0 + CHUNK_TILES
-    const ty1 = ty0 + CHUNK_TILES
-    for (const decal of this.map.decals) {
-      if (decal.at.x1 < tx0 || decal.at.x0 >= tx1 || decal.at.y1 < ty0 || decal.at.y0 >= ty1) continue
-      paintDecal(this.sink, decal)
-    }
-    for (const lily of this.map.lilies) {
-      if (lily.tx < tx0 || lily.tx >= tx1 || lily.ty < ty0 || lily.ty >= ty1) continue
-      paintLily(this.sink, lily.tx, lily.ty, lily.seed)
-    }
+    this.map.paintGround(this.sink, tx0, ty0, tx0 + CHUNK_TILES, ty0 + CHUNK_TILES)
     this.target = null
     return pixelsToCanvas(CHUNK_PX, CHUNK_PX, pixels)
   }

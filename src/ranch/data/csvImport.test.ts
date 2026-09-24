@@ -51,7 +51,25 @@ describe('fromYouTube', () => {
   })
 
   it('says which column is missing when the export changes', () => {
-    expect(() => fromYouTube([{ Miembro: 'x' }])).toThrow(/Enlace al perfil/)
+    expect(() => fromYouTube([{ Miembro: 'x' }])).toThrow(/Enlace al perfil" o "Vínculo al perfil/)
+  })
+
+  it('accepts either spelling YouTube uses for the profile link', () => {
+    const rows = parseCsv(
+      [
+        'Miembro,Vínculo al perfil,Nivel actual,Tiempo total en el nivel (meses),Tiempo total como miembro (meses),Última actualización,Marca de tiempo de la última actualización',
+        'Sprincet,https://www.youtube.com/channel/UCszYOJj7sG49GEaDT58rYsw,Queriditos,6.13333,6.13333,Se volvió a unir,2026-09-18T01:08:26.093-07:00',
+        'chulo13,https://www.youtube.com/channel/UC4WDD8TysLiICbVIkAD4ESA,Queriditos,7.3,7.3,Se unió,2026-09-12T17:49:49.951-07:00',
+      ].join('\n'),
+    )
+    const members = fromYouTube(rows)
+    expect(members.map(m => m.platformUserId)).toEqual([
+      'UCszYOJj7sG49GEaDT58rYsw',
+      'UC4WDD8TysLiICbVIkAD4ESA',
+    ])
+    // "Se volvió a unir" is a return, so it carries no join date; "Se unió" does.
+    expect(members[0].memberSince).toBeNull()
+    expect(members[1].memberSince).toBe('2026-09-13T00:49:49.951Z')
   })
 })
 

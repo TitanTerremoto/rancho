@@ -1,9 +1,9 @@
 <template>
   <div class="ra">
-    <canvas ref="canvasRef" class="ra-canvas" aria-label="Mapa del Rancho de Guti" role="img" />
+    <canvas ref="canvasRef" class="ra-canvas" :aria-label="`Mapa de ${site.title}`" role="img" />
 
     <div class="ra-top">
-      <RanchSearch :index="index" @pick="goTo" />
+      <RanchSearch :index="index" :place="site.place" @pick="goTo" />
     </div>
 
     <div class="ra-zoom">
@@ -18,7 +18,13 @@
       {{ stats.chunks }} chunks · {{ stats.species }} especies
     </p>
 
-    <ResidentCard v-if="selected" :resident="selected" @close="close" />
+    <ResidentCard
+      v-if="selected"
+      :resident="selected"
+      :zones="site.zones"
+      :since-label="site.sinceLabel"
+      @close="close"
+    />
   </div>
 </template>
 
@@ -31,6 +37,10 @@ import { readRanchParams, urlWithUser } from './data/urlParams'
 import type { RanchResident } from './domain/membership'
 import { buildSearchIndex, findByName, type SearchEntry } from './domain/search'
 import { RanchScene, type RanchStats } from './render/ranchScene'
+import type { SiteDef } from '../shared/site'
+
+const props = defineProps<{ site: SiteDef }>()
+const site = props.site
 
 /** How long a "nobody with that name" message stays up. */
 const NOTICE_MS = 5000
@@ -83,6 +93,7 @@ onMounted(async () => {
   debug.value = params.debug
 
   const started = new RanchScene(canvas, {
+    site,
     initialZoom: window.innerWidth < 640 ? 1.5 : 2,
     onSelect: show,
   })
@@ -94,9 +105,9 @@ onMounted(async () => {
 
   let snapshot
   try {
-    snapshot = await loadSnapshot(params, started.capacity)
+    snapshot = await loadSnapshot(site, params, started.capacity)
   } catch {
-    say('No pude cargar a los habitantes del Rancho. Probá recargar la página.')
+    say(`No pude cargar a los habitantes de ${site.place}. Probá recargar la página.`)
     return
   }
   // The component may have been torn down while the snapshot was loading.
@@ -111,7 +122,7 @@ onMounted(async () => {
       started.focus(resident.id, { instant: true })
       selected.value = resident
     } else {
-      say(`Nadie llamado “${params.user}” vive en el Rancho.`)
+      say(`Nadie llamado “${params.user}” vive en ${site.place}.`)
     }
   }
 })
@@ -125,7 +136,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style>
-/* The ranch fills the window and never scrolls: the canvas owns the gestures. */
+/* The map fills the window and never scrolls: the canvas owns the gestures. */
 html,
 body {
   margin: 0;

@@ -1,9 +1,11 @@
-// The living ranch — Rancho
+// The living map — Rancho / La Bahía
 //
 // Owns the canvas, the clock and everything on the map: it builds the world
-// once, keeps the inhabitants ticking, decides what is on screen and hands a
-// frame to the renderer. The Vue layer talks to it through a small surface
-// (focus, pick, select) and never touches actors or the camera directly.
+// its site describes, keeps the inhabitants ticking, decides what is on screen
+// and hands a frame to the renderer. The Vue layer talks to it through a small
+// surface (focus, pick, select) and never touches actors or the camera
+// directly. Which place it is showing is decided entirely by the SiteDef it
+// is given, so the ranch and the bay share every line of this file.
 //
 // Three things keep it cheap with two thousand inhabitants: only what the
 // viewport can see is simulated or drawn, the visible list is a reused buffer
@@ -12,21 +14,18 @@
 import { advance, actorPosition, type Actor, type MoveRules } from '../../engine/actors'
 import { pokeballInfo } from '../../engine/pokeball'
 import { TILE } from '../../engine/world'
+import type { SiteArt, SiteDef, SiteMap } from '../../shared/site'
 import type { RanchResident, RanchSnapshot } from '../domain/membership'
 import { speciesName } from '../domain/species'
 import {
-  caretakerRoutes, caretakerRules, createCaretakers, loadCaretakerArt, tickCaretaker, type Caretaker,
+  caretakerRules, createCaretakers, loadCaretakerArt, tickCaretaker, type Caretaker,
 } from '../world/caretakers'
-import { RanchMap } from '../world/ranchMap'
 import {
   createInhabitants, inhabitantRules, SpeciesArt, thinkInhabitant, type Inhabitant,
 } from '../world/residents'
-import { ZONE_LABELS } from '../world/ranchLayout'
 import { buildSlots, slotCapacity, type ZoneSlots } from '../world/slots'
-import { ZONE_IDS, ZONES, type ZoneId } from '../domain/zones'
 import { RanchCamera } from './camera'
 import { NameplateCache } from './nameplates'
-import { buildRanchArt, type RanchArt } from './ranchArt'
 import { RanchGround } from './ranchGround'
 import { drawFrame, type DrawableActor, type MapLabel } from './renderer'
 import { buildScenery, type SceneryItem } from './scenery'
@@ -54,27 +53,26 @@ export interface RanchStats {
 }
 
 export interface SceneOptions {
+  /** Which place to build. */
+  site: SiteDef
   onSelect?: (resident: RanchResident | null) => void
   initialZoom?: number
 }
 
 export class RanchScene {
-  readonly map: RanchMap
+  readonly site: SiteDef
+  readonly map: SiteMap
   readonly slots: ZoneSlots
   readonly camera: RanchCamera
-  readonly capacity: Record<ZoneId, number>
+  readonly capacity: Record<string, number>
 
   private readonly canvas: HTMLCanvasElement
   private readonly ctx: CanvasRenderingContext2D
-  private readonly art: RanchArt
+  private readonly art: SiteArt
   private readonly ground: RanchGround
   private readonly scenery: readonly SceneryItem[]
   private readonly nameplates = new NameplateCache()
-  private readonly labels: MapLabel[] = ZONE_IDS.map(zone => ({
-    text: ZONES[zone].name,
-    x: ZONE_LABELS[zone].x * TILE,
-    y: ZONE_LABELS[zone].y * TILE,
-  }))
+  private readonly labels: MapLabel[]
   private readonly speciesArt = new SpeciesArt()
 
   private readonly inhabitantRules: MoveRules
@@ -104,17 +102,24 @@ export class RanchScene {
   private needsFrame = true
   private animationFrame = -1
 
-  constructor(canvas: HTMLCanvasElement, options: SceneOptions = {}) {
+  constructor(canvas: HTMLCanvasElement, options: SceneOptions) {
+    const site = options.site
+    this.site = site
     this.canvas = canvas
     const ctx = canvas.getContext('2d', { alpha: false })
-    if (!ctx) throw new Error('El Rancho necesita un canvas 2D')
+    if (!ctx) throw new Error(`${site.title} necesita un canvas 2D`)
     this.ctx = ctx
     this.onSelect = options.onSelect ?? (() => {})
 
-    this.map = new RanchMap()
-    this.slots = buildSlots(this.map)
+    this.map = site.createMap()
+    this.slots = buildSlots(this.map, site.zoneIds, site.focus, site.seed)
     this.capacity = slotCapacity(this.slots)
-    this.art = buildRanchArt()
+    this.art = site.createArt()
+    this.labels = site.zoneIds.map(zone => ({
+      text: site.zones[zone].name,
+      x: site.labels[zone].x * TILE,
+      y: site.labels[zone].y * TILE,
+    }))
     this.ground = new RanchGround(this.map)
     this.scenery = buildScenery(this.map, this.art)
     this.camera = new RanchCamera(
@@ -145,7 +150,7 @@ export class RanchScene {
       if (cell) cell.push(index)
       else this.grid.set(key, [index])
     })
-    this.caretakers = createCaretakers(caretakerRoutes(), this.map, this.clock)
+    this.caretakers = createCaretakers(this.site.routes(), this.map, this.clock)
     loadCaretakerArt(this.caretakers)
     this.needsFrame = true
   }
@@ -309,7 +314,9 @@ export class RanchScene {
       }
       this.push(actor, resident.displayName, resident.platform, resident.id)
     })
-    for (const caretaker of this.caretakers) this.push(caretaker.actor, null, null, caretaker.id)
+    // The caretakers carry their own name, and no platform mark: they are
+    // the people who look after the place, not inhabitants of it.
+    for (const caretaker of this.caretakers) this.push(caretaker.actor, caretaker.name, null, caretaker.id)
     const n = this.visibleCount
 
     // Insertion sort: the list starts nearly ordered, so this is linear in practice.

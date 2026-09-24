@@ -16,6 +16,13 @@ export default defineConfig(({ command }) => ({
   build: {
     outDir: '../dist',
     emptyOutDir: true,
+    // Two places, two pages: the ranch at the root and Sky's bay one folder in.
+    rollupOptions: {
+      input: {
+        rancho: fileURLToPath(new URL('./src/index.html', import.meta.url)),
+        sky: fileURLToPath(new URL('./src/sky/index.html', import.meta.url)),
+      },
+    },
   },
   test: {
     environment: 'jsdom',

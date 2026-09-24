@@ -12,7 +12,7 @@
 // Names are untrusted text: cleaned here and only ever rendered as text.
 
 import { isSpeciesId } from './species'
-import { isZoneId, type ZoneId } from './zones'
+import { isZoneId } from './zones'
 
 export type Platform = 'twitch' | 'youtube'
 
@@ -36,7 +36,8 @@ export interface RanchResident {
   displayName: string
   speciesId: number
   shiny: boolean
-  zone: ZoneId
+  /** Zone id of whichever place this snapshot belongs to. */
+  zone: string
   slot: number
   /** When the ranch first saw this membership: the only date Twitch can honestly back. */
   firstSeenAt: string
@@ -71,7 +72,10 @@ const optionalMonths = (value: unknown): number | null =>
   Number.isInteger(value) && (value as number) >= 0 ? (value as number) : null
 const optionalText = (value: unknown): string | null => (typeof value === 'string' && value ? value.slice(0, 40) : null)
 
-function parseResident(raw: unknown): RanchResident | null {
+/** Whether a zone id belongs to the place this snapshot is for. */
+export type ZoneGuard = (value: unknown) => boolean
+
+function parseResident(raw: unknown, isZone: ZoneGuard): RanchResident | null {
   if (!raw || typeof raw !== 'object') return null
   const r = raw as Record<string, unknown>
   if (typeof r.id !== 'string' || !r.id) return null
@@ -79,7 +83,7 @@ function parseResident(raw: unknown): RanchResident | null {
   if (typeof r.displayName !== 'string') return null
   const displayName = cleanDisplayName(r.displayName)
   if (!displayName) return null
-  if (!isSpeciesId(r.speciesId) || !isZoneId(r.zone)) return null
+  if (!isSpeciesId(r.speciesId) || typeof r.zone !== 'string' || !isZone(r.zone)) return null
   if (!Number.isInteger(r.slot) || (r.slot as number) < 0) return null
   if (!isIsoDate(r.firstSeenAt)) return null
   return {
@@ -102,14 +106,14 @@ function parseResident(raw: unknown): RanchResident | null {
  * duplicated id or address keeps its first entry) rather than failing the
  * whole ranch.
  */
-export function parseSnapshot(raw: unknown): RanchSnapshot {
+export function parseSnapshot(raw: unknown, isZone: ZoneGuard = isZoneId): RanchSnapshot {
   const r = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>
   const list = Array.isArray(r.residents) ? r.residents : []
   const ids = new Set<string>()
   const addresses = new Set<string>()
   const residents: RanchResident[] = []
   for (const item of list) {
-    const resident = parseResident(item)
+    const resident = parseResident(item, isZone)
     if (!resident) continue
     const address = `${resident.zone}:${resident.slot}`
     if (ids.has(resident.id) || addresses.has(address)) continue

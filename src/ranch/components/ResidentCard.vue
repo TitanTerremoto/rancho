@@ -28,8 +28,6 @@
           <dd>{{ fact.value }}</dd>
         </div>
       </dl>
-
-      <p class="rc-note">Los datos de esta versión son de prueba.</p>
     </section>
   </div>
 </template>
@@ -37,16 +35,17 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { overworldSheetUrl } from '../../engine/characters'
+import type { ZoneTable } from '../../shared/site'
 import type { RanchResident } from '../domain/membership'
 import { speciesName } from '../domain/species'
 import { membershipLabel, residentFacts } from '../domain/tenure'
 
-const props = defineProps<{ resident: RanchResident }>()
+const props = defineProps<{ resident: RanchResident; zones: ZoneTable; sinceLabel: string }>()
 const emit = defineEmits<{ close: [] }>()
 
 const cardRef = ref<HTMLElement | null>(null)
 const species = computed(() => speciesName(props.resident.speciesId))
-const facts = computed(() => residentFacts(props.resident))
+const facts = computed(() => residentFacts(props.resident, { zones: props.zones, sinceLabel: props.sinceLabel }))
 // The sheet is 2 columns x 4 rows of square cells, so 200%/400% makes one cell
 // fill the box whatever the source cell size is. The url only ever holds a
 // validated species number.
@@ -180,10 +179,5 @@ onUnmounted(() => window.removeEventListener('keydown', onKeyDown))
   margin: 0;
   font-weight: 600;
   text-align: right;
-}
-.rc-note {
-  margin: 12px 2px 0;
-  font-size: 12px;
-  color: #8a909b;
 }
 </style>

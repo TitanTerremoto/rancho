@@ -44,7 +44,7 @@
         </button>
       </li>
     </ul>
-    <p v-else-if="query.trim() && searched" class="rs-empty">Nadie con ese nombre vive en el Rancho.</p>
+    <p v-else-if="query.trim() && searched" class="rs-empty">Nadie con ese nombre vive en {{ place }}.</p>
   </div>
 </template>
 
@@ -54,7 +54,7 @@ import type { RanchResident } from '../domain/membership'
 import { searchByName, type SearchEntry } from '../domain/search'
 import { speciesName } from '../domain/species'
 
-const props = defineProps<{ index: SearchEntry<RanchResident>[] }>()
+const props = defineProps<{ index: SearchEntry<RanchResident>[]; place: string }>()
 const emit = defineEmits<{ pick: [resident: RanchResident] }>()
 
 const query = ref('')

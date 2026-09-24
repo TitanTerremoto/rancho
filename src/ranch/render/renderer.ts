@@ -1,4 +1,4 @@
-// Frame drawing — Rancho
+// Frame drawing — Rancho / La Bahía
 //
 // Layers, bottom to top: baked ground (terrain plus the flat decals), then
 // everything that stands up — scenery and inhabitants merged into a single
@@ -33,7 +33,7 @@ export interface DrawableActor {
   /** Feet in world pixels, resolved once per frame by the scene. */
   x: number
   y: number
-  /** Label shown under it; caretakers have none. */
+  /** Label shown under it. */
   name: string | null
   platform: Platform | null
   key: string
@@ -168,7 +168,7 @@ function overlaps(x: number, y: number, w: number, h: number): boolean {
 
 /** Draws one nameplate; `crowd` skips it when something is already there. */
 function plate(ctx: CanvasRenderingContext2D, input: FrameInput, drawable: DrawableActor, crowd: boolean): boolean {
-  if (!drawable.name || !drawable.platform) return false
+  if (!drawable.name) return false
   const { camera, nameplates } = input
   const sprite = spriteFor(drawable.actor)
   const lift = sprite ? sprite.ay + 4 : 20

@@ -7,6 +7,8 @@
 import type { ChunkSource } from '../../engine/chunks'
 import { fbm, hash2 } from '../../engine/noise'
 import { T, type DecorKind, type Terrain } from '../../engine/world'
+import type { PixelSink } from '../../shared/site'
+import { paintDecal, paintLily } from '../art/decalArt'
 import { ZONE_IDS, type ZoneId } from '../domain/zones'
 import {
   ACCENT_BUSHES, ACCENT_TREES, CAMPFIRE_CLEARING, DECALS, ENTRANCE, FOREST_CLEARING, INTERIOR, ISLAND, LAKE,
@@ -267,6 +269,18 @@ export class RanchMap implements ChunkSource {
     if ((ty === 43 || ty === 62) && tx >= 5 && tx <= 30 && tx % 7 !== 3) return 'bush'
     if (region === 'descanso' && (tx < 9 || ty > 82) && checker && h1 < 0.5) return 'tree'
     return h1 < 0.012 ? 'bush' : null
+  }
+
+  /** Flat details of this chunk: the designed decals and the lily pads. */
+  paintGround(px: PixelSink, tx0: number, ty0: number, tx1: number, ty1: number): void {
+    for (const decal of this.decals) {
+      if (decal.at.x1 < tx0 || decal.at.x0 >= tx1 || decal.at.y1 < ty0 || decal.at.y0 >= ty1) continue
+      paintDecal(px, decal)
+    }
+    for (const lily of this.lilies) {
+      if (lily.tx < tx0 || lily.tx >= tx1 || lily.ty < ty0 || lily.ty >= ty1) continue
+      paintLily(px, lily.tx, lily.ty, lily.seed)
+    }
   }
 
   inside(tx: number, ty: number): boolean {

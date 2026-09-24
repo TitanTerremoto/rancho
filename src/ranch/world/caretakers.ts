@@ -1,6 +1,6 @@
-// Guti and Sky — Rancho
+// The caretakers — Rancho / La Bahía
 //
-// The only two people on the map. Everyone else living here is a Pokémon.
+// The only two people on a map. Everyone else living there is a Pokémon.
 // They do the rounds of the places that matter — house, paddocks, barn,
 // plaza, garden, lake — walking a real path between them and then standing
 // around for a good while, so they read as caretakers rather than as NPCs
@@ -10,33 +10,25 @@ import { advance, isMoving, tryStep, type Actor, type MoveRules } from '../../en
 import { createActor } from '../../engine/actors'
 import { loadTrainerSheet, type Dir, type TrainerSprites } from '../../engine/characters'
 import { findPath } from '../../engine/pathfinding'
+import type { CaretakerRoute, SiteMap } from '../../shared/site'
 import { devWarn } from '../../shared/utils/devTools'
 import { hashString, seededRandom } from '../domain/seededRandom'
 import type { Tile } from './slots'
-import type { RanchMap } from './ranchMap'
 
 // BASE_URL keeps the sheets findable when the ranch is served from a
-// subfolder, as it is on GitHub Pages.
-export const CARETAKER_SHEETS = {
-  guti: `${import.meta.env.BASE_URL}assets/trainers/protahombre.png`,
-  sky: `${import.meta.env.BASE_URL}assets/trainers/dawnrosa.png`,
-} as const
+// subfolder, as it is on GitHub Pages. It is read inside the route builder,
+// not at module level, so this file is safe to import from Node too.
+const sheet = (file: string): string => `${import.meta.env.BASE_URL}assets/trainers/${file}`
 
-export type CaretakerId = keyof typeof CARETAKER_SHEETS
+export type { CaretakerRoute }
 
 /** Seconds spent standing at a stop before setting off again. */
 const PAUSE_MIN = 10
 const PAUSE_MAX = 30
 /** An unhurried walk: slower than the handheld player. */
 const CARETAKER_SPEED = 2.6
-/** A* budget: the ranch is 120 x 90 tiles, so a generous radius still ends fast. */
+/** A* budget: a map is 120 x 90 tiles, so a generous radius still ends fast. */
 const PATH_RADIUS = 140
-
-export interface CaretakerRoute {
-  id: CaretakerId
-  name: string
-  stops: Tile[]
-}
 
 /** Tile rounds for each of them, in the order they walk. */
 export function caretakerRoutes(): CaretakerRoute[] {
@@ -44,6 +36,7 @@ export function caretakerRoutes(): CaretakerRoute[] {
     {
       id: 'guti',
       name: 'Guti',
+      sheet: sheet('protahombre.png'),
       stops: [
         { tx: 64, ty: 47 }, // puerta de la casa
         { tx: 60, ty: 55 }, // plaza
@@ -56,6 +49,7 @@ export function caretakerRoutes(): CaretakerRoute[] {
     {
       id: 'sky',
       name: 'Sky',
+      sheet: sheet('dawnrosa.png'),
       stops: [
         { tx: 14, ty: 58 }, // huerta
         { tx: 24, ty: 52 }, // camino del jardín
@@ -69,8 +63,9 @@ export function caretakerRoutes(): CaretakerRoute[] {
 }
 
 export interface Caretaker {
-  id: CaretakerId
+  id: string
   name: string
+  sheet: string
   actor: Actor
   stops: Tile[]
   /** Stop being walked to. */
@@ -82,13 +77,14 @@ export interface Caretaker {
   random: () => number
 }
 
-export function createCaretakers(routes: readonly CaretakerRoute[], map: RanchMap, now: number): Caretaker[] {
+export function createCaretakers(routes: readonly CaretakerRoute[], map: SiteMap, now: number): Caretaker[] {
   return routes.map((route, index) => {
     const start = nearestOpen(map, route.stops[0])
     const random = seededRandom(hashString(`caretaker:${route.id}`))
     return {
       id: route.id,
       name: route.name,
+      sheet: route.sheet,
       actor: createActor({
         id: `caretaker:${route.id}`,
         kind: 'npc',
@@ -108,7 +104,7 @@ export function createCaretakers(routes: readonly CaretakerRoute[], map: RanchMa
 }
 
 /** The given tile, or the closest walkable one to it (stops are hand-placed). */
-function nearestOpen(map: RanchMap, tile: Tile): Tile {
+function nearestOpen(map: SiteMap, tile: Tile): Tile {
   if (!map.isSolid(tile.tx, tile.ty)) return tile
   for (let r = 1; r <= 6; r++) {
     for (let dy = -r; dy <= r; dy++) {
@@ -123,7 +119,7 @@ function nearestOpen(map: RanchMap, tile: Tile): Tile {
   return tile
 }
 
-export function caretakerRules(map: RanchMap): MoveRules {
+export function caretakerRules(map: SiteMap): MoveRules {
   return {
     blocked: (_actor, tx, ty) => map.isSolid(tx, ty),
     occupied: () => false,
@@ -171,7 +167,7 @@ export function tickCaretaker(caretaker: Caretaker, now: number, dt: number, rul
 /** Loads the two bundled trainer sheets; on failure the caretaker stays invisible. */
 export function loadCaretakerArt(caretakers: readonly Caretaker[]): void {
   for (const caretaker of caretakers) {
-    loadTrainerSheet(CARETAKER_SHEETS[caretaker.id])
+    loadTrainerSheet(caretaker.sheet)
       .then(sheet => {
         caretaker.actor.trainer = sheet.walk as TrainerSprites
         if (sheet.run) caretaker.actor.trainerRun = sheet.run
